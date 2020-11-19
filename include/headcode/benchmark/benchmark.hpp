@@ -41,9 +41,9 @@ inline std::chrono::microseconds GetElapsedMicroSeconds(std::chrono::high_resolu
  * @return  bps
  */
 inline double GetBitsPerSecond(Throughput const & throughput) {
-    float elapsed_us = throughput.elapsed_.count();
+    double elapsed_us = throughput.elapsed_.count();
     if (elapsed_us != 0) {
-        return static_cast<float>(throughput.bytes_ << 3) / (elapsed_us / 1'000'000.0);
+        return static_cast<double>(throughput.bytes_ << 3) / (elapsed_us / 1'000'000.0);
     }
     return 0;
 }
