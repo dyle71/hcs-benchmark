@@ -76,10 +76,10 @@ inline double GetGigaBitsPerSecond(Throughput const & throughput) {
 }
 
 /**
- * @brief   Create a stream output of the throughput numbers.
+ * @brief   Create a string output of the throughput numbers.
  * @param   throughput      the throughput data
  * @param   indent          the indent in each line
- * @return  the stream object.
+ * @return  A multi-line string holding the numbers.
  */
 inline std::string StreamPerformanceIndicators(Throughput const & throughput, std::string const & indent = {}) {
     std::stringstream ss;
