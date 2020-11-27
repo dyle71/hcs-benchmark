@@ -29,3 +29,4 @@ for PLATFORM in ${PLATFORMS}; do
     echo "Creating ${BUILDER_IMAGE}..."
     docker build --tag ${BUILDER_IMAGE} --file Dockerfile.build.${PLATFORM} .
 done
+
