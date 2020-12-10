@@ -44,8 +44,8 @@ package-debian-buster:
     - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=debian-buster ..
     - make
     - make package
-    - export CPACK_PACKAGE_FILE_NAME=`grep --color=auto CPACK_PACKAGE_FILE_NAME CPackConfig.cmake | cut -d \" -f 2`
-    - export CPACK_PACKAGE_VERSION=`grep --color=auto CPACK_PACKAGE_VERSION CPackConfig.cmake | cut -d \" -f 2`
+    - export CPACK_PACKAGE_FILE_NAME=`grep CPACK_PACKAGE_FILE_NAME CPackConfig.cmake | cut -d \" -f 2`
+    - export CPACK_PACKAGE_VERSION=`grep 'set(CPACK_PACKAGE_VERSION ' CPackConfig.cmake | cut -d \" -f 2`
     - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file "${CPACK_PACKAGE_FILE_NAME}.deb" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/hcs-benchmark/${CPACK_PACKAGE_VERSION}/${CPACK_PACKAGE_FILE_NAME}.deb"'
   artifacts:
     paths:
@@ -64,8 +64,8 @@ package-ubuntu-bionic:
     - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=ubuntu-bionic ..
     - make
     - make package
-    - export CPACK_PACKAGE_FILE_NAME=`grep --color=auto CPACK_PACKAGE_FILE_NAME CPackConfig.cmake | cut -d \" -f 2`
-    - export CPACK_PACKAGE_VERSION=`grep --color=auto CPACK_PACKAGE_VERSION CPackConfig.cmake | cut -d \" -f 2`
+    - export CPACK_PACKAGE_FILE_NAME=`grep CPACK_PACKAGE_FILE_NAME CPackConfig.cmake | cut -d \" -f 2`
+    - export CPACK_PACKAGE_VERSION=`grep 'set(CPACK_PACKAGE_VERSION ' CPackConfig.cmake | cut -d \" -f 2`
     - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file "${CPACK_PACKAGE_FILE_NAME}.deb" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/hcs-benchmark/${CPACK_PACKAGE_VERSION}/${CPACK_PACKAGE_FILE_NAME}.deb"'
   artifacts:
     paths:
@@ -84,10 +84,8 @@ package-ubuntu-focal:
     - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=ubuntu-focal ..
     - make
     - make package
-    - export CPACK_PACKAGE_FILE_NAME=`grep --color=auto CPACK_PACKAGE_FILE_NAME CPackConfig.cmake | cut -d \" -f 2`
-    - echo ${CPACK_PACKAGE_FILE_NAME}
-    - export CPACK_PACKAGE_VERSION=`grep --color=auto CPACK_PACKAGE_VERSION CPackConfig.cmake | cut -d \" -f 2`
-    - echo ${CPACK_PACKAGE_VERSION}
+    - export CPACK_PACKAGE_FILE_NAME=`grep CPACK_PACKAGE_FILE_NAME CPackConfig.cmake | cut -d \" -f 2`
+    - export CPACK_PACKAGE_VERSION=`grep 'set(CPACK_PACKAGE_VERSION ' CPackConfig.cmake | cut -d \" -f 2`
     - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file "${CPACK_PACKAGE_FILE_NAME}.deb" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/hcs-benchmark/${CPACK_PACKAGE_VERSION}/${CPACK_PACKAGE_FILE_NAME}.deb"'
   artifacts:
     paths:
@@ -106,8 +104,8 @@ package-fedora32:
     - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=RPM -DCPACK_SYSTEM_NAME=fedora32 ..
     - make
     - make package
-    - export CPACK_PACKAGE_FILE_NAME=`grep --color=auto CPACK_PACKAGE_FILE_NAME CPackConfig.cmake | cut -d \" -f 2`
-    - export CPACK_PACKAGE_VERSION=`grep --color=auto CPACK_PACKAGE_VERSION CPackConfig.cmake | cut -d \" -f 2`
+    - export CPACK_PACKAGE_FILE_NAME=`grep CPACK_PACKAGE_FILE_NAME CPackConfig.cmake | cut -d \" -f 2`
+    - export CPACK_PACKAGE_VERSION=`grep 'set(CPACK_PACKAGE_VERSION ' CPackConfig.cmake | cut -d \" -f 2`
     - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file "${CPACK_PACKAGE_FILE_NAME}.rpm" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/hcs-benchmark/${CPACK_PACKAGE_VERSION}/${CPACK_PACKAGE_FILE_NAME}.rpm"'
   artifacts:
     paths:
