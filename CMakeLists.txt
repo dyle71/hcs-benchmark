@@ -202,13 +202,13 @@ set(CPACK_SOURCE_IGNORE_FILES "./build/*;/.git/;/.idea/;/.scannerwork/;/.sonar/;
 set(CPACK_SOURCE_GENERATOR "TGZ")
 
 if ("${CPACK_GENERATOR}" STREQUAL "DEB")
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "good-tool (>= 1.2)")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "")
     set(PACKAGE_DEB_CONTROL_DIR "tools/package/deb")
     include(cmake/deb-package.cmake)
 endif()
 
 if ("${CPACK_GENERATOR}" STREQUAL "RPM")
-    set(CPACK_RPM_PACKAGE_REQUIRES "good-tool (>= 1.2)")
+    set(CPACK_RPM_PACKAGE_REQUIRES "")
     set(PACKAGE_RPM_CONTROL_DIR "tools/package/rpm")
     include(cmake/rpm-package.cmake)
 endif()

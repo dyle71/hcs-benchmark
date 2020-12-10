@@ -27,6 +27,5 @@ PLATFORMS=$(find . -type f -name 'Dockerfile.build.*' | cut -d '.' -f 4 | xargs 
 for PLATFORM in ${PLATFORMS}; do
     BUILDER_IMAGE="${PREFIX}:${PLATFORM}"
     echo "Creating ${BUILDER_IMAGE}..."
-    docker build --tag "${BUILDER_IMAGE}" --file Dockerfile.build.${PLATFORM} .
+    docker build --tag "${BUILDER_IMAGE}" --file "Dockerfile.build.${PLATFORM}" .
 done
-
