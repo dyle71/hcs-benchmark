@@ -33,7 +33,7 @@ build:
   coverage: '/^TOTAL.*\s+(\d+\%)$/'
 
 package-debian-buster:
-  stage: package-x
+  stage: package
   image: registry.gitlab.com/headcode.space/benchmark:debian-buster
   script:
     - git submodule init
@@ -53,7 +53,7 @@ package-debian-buster:
     name: ${CI_PROJECT_NAME}-debian-buster
 
 package-ubuntu-bionic:
-  stage: package-x
+  stage: package
   image: registry.gitlab.com/headcode.space/benchmark:ubuntu-bionic
   script:
     - git submodule init
@@ -95,7 +95,7 @@ package-ubuntu-focal:
     name: ${CI_PROJECT_NAME}-ubuntu-focal
 
 package-fedora32:
-  stage: package-x
+  stage: package
   image: registry.gitlab.com/headcode.space/benchmark:fedora32
   script:
     - git submodule init
