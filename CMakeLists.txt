@@ -6,6 +6,21 @@
 # https://www.headcode.space, <info@headcode.space>
 # ------------------------------------------------------------
 
+
+# ------------------------------------------------------------
+# tl;dr - How to create a package - copy-paste to a shell:
+#
+# 1. git clone https://gitlab.com/headcode.space/benchmark.git
+# 2. cd benchmark
+# 3. mkdir build
+# 4.1) cmake -D CMAKE_BUILD_TYPE=Release -D CPACK_GENERATOR=DEB ..        # for DEB packages
+# - xor -
+# 4.2) cmake -D CMAKE_BUILD_TYPE=Release -D CPACK_GENERATOR=RPM ..        # for RPM packages
+# 5. CORES=`grep 'cpu cores' /proc/cpuinfo | awk '{ print $4 }' | head -n 1` make -j $CORES
+# 6. make package
+# ------------------------------------------------------------
+
+
 project(hcs-benchmark C CXX)
 cmake_minimum_required(VERSION 3.10.2)
 
@@ -92,6 +107,7 @@ add_definitions(-D_DEFAULT_SOURCE)
 set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -D__FILENAME__='\"$(subst ${CMAKE_SOURCE_DIR}/,,$(abspath $<))\"'")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D__FILENAME__='\"$(subst ${CMAKE_SOURCE_DIR}/,,$(abspath $<))\"'")
 
+
 # ---- fix C++ standard used ----
 
 set(CMAKE_CXX_STANDARD 17)
@@ -106,6 +122,7 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
     set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
     message(STATUS "Turning on compiler command export for CLang: ${CMAKE_BINARY_DIR}/compile_commands.json")
 endif ()
+
 
 # ---- callgrind integration ----
 
@@ -154,7 +171,11 @@ install(DIRECTORY ${CMAKE_BINARY_DIR}/html
 # Workload
 
 if (BUILD_TESTING)
+    message(STATUS "Building tests")
     add_subdirectory(test)
+else()
+    message(STATUS "Building without tests")
+    message(STATUS "To enable tests invoke cmake with \"-D BUILD_TESTING=on\" arguments.")
 endif ()
 
 
@@ -181,10 +202,14 @@ set(CPACK_SOURCE_IGNORE_FILES "./build/*;/.git/;/.idea/;/.scannerwork/;/.sonar/;
 set(CPACK_SOURCE_GENERATOR "TGZ")
 
 if ("${CPACK_GENERATOR}" STREQUAL "DEB")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "good-tool (>= 1.2)")
+    set(PACKAGE_DEB_CONTROL_DIR "tools/package/deb")
     include(cmake/deb-package.cmake)
 endif()
 
 if ("${CPACK_GENERATOR}" STREQUAL "RPM")
+    set(CPACK_RPM_PACKAGE_REQUIRES "good-tool (>= 1.2)")
+    set(PACKAGE_RPM_CONTROL_DIR "tools/package/rpm")
     include(cmake/rpm-package.cmake)
 endif()
 
