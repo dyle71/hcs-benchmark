@@ -7,7 +7,7 @@
 # ------------------------------------------------------------
 
 stages:
-  - build
+  #- build
   - package
 
 build:
@@ -33,7 +33,7 @@ build:
   coverage: '/^TOTAL.*\s+(\d+\%)$/'
 
 package-debian-buster:
-  stage: package
+  stage: package-x
   image: registry.gitlab.com/headcode.space/benchmark:debian-buster
   script:
     - git submodule init
@@ -53,7 +53,7 @@ package-debian-buster:
     name: ${CI_PROJECT_NAME}-debian-buster
 
 package-ubuntu-bionic:
-  stage: package
+  stage: package-x
   image: registry.gitlab.com/headcode.space/benchmark:ubuntu-bionic
   script:
     - git submodule init
@@ -85,7 +85,9 @@ package-ubuntu-focal:
     - make
     - make package
     - export CPACK_PACKAGE_FILE_NAME=`grep --color=auto CPACK_PACKAGE_FILE_NAME CPackConfig.cmake | cut -d \" -f 2`
+    - echo ${CPACK_PACKAGE_FILE_NAME}
     - export CPACK_PACKAGE_VERSION=`grep --color=auto CPACK_PACKAGE_VERSION CPackConfig.cmake | cut -d \" -f 2`
+    - echo ${CPACK_PACKAGE_VERSION}
     - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file "${CPACK_PACKAGE_FILE_NAME}.deb" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/hcs-benchmark/${CPACK_PACKAGE_VERSION}/${CPACK_PACKAGE_FILE_NAME}.deb"'
   artifacts:
     paths:
@@ -93,7 +95,7 @@ package-ubuntu-focal:
     name: ${CI_PROJECT_NAME}-ubuntu-focal
 
 package-fedora32:
-  stage: package
+  stage: package-x
   image: registry.gitlab.com/headcode.space/benchmark:fedora32
   script:
     - git submodule init
