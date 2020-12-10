@@ -201,16 +201,31 @@ set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR
 set(CPACK_SOURCE_IGNORE_FILES "./build/*;/.git/;/.idea/;/.scannerwork/;/.sonar/;/sonar-project.properties")
 set(CPACK_SOURCE_GENERATOR "TGZ")
 
+
 if ("${CPACK_GENERATOR}" STREQUAL "DEB")
+
     set(CPACK_DEBIAN_PACKAGE_DEPENDS "")
     set(PACKAGE_DEB_CONTROL_DIR "tools/package/deb")
     include(cmake/deb-package.cmake)
+
+    set(GITLAB_PACKAGE_URL "https://gitlab.com/api/v4/projects/22567556/packages/generic/hcs-benchmark")
+    set(PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}.deb")
+    set(PACKAGE_FILE "${CMAKE_BINARY_DIR}/${PACKAGE_FILE_NAME}")
+    include(gitlab-package-push)
+
 endif()
 
 if ("${CPACK_GENERATOR}" STREQUAL "RPM")
+
     set(CPACK_RPM_PACKAGE_REQUIRES "")
     set(PACKAGE_RPM_CONTROL_DIR "tools/package/rpm")
     include(cmake/rpm-package.cmake)
+
+    set(GITLAB_PACKAGE_URL "https://gitlab.com/api/v4/projects/22567556/packages/generic/hcs-benchmark")
+    set(PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}.rpm")
+    set(PACKAGE_FILE "${CMAKE_BINARY_DIR}/${PACKAGE_FILE_NAME}")
+    include(gitlab-package-push)
+
 endif()
 
 include(CPack)
