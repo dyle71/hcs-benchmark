@@ -208,7 +208,8 @@ if ("${CPACK_GENERATOR}" STREQUAL "DEB")
     set(PACKAGE_DEB_CONTROL_DIR "tools/package/deb")
     include(cmake/deb-package.cmake)
 
-    set(GITLAB_PACKAGE_URL "https://gitlab.com/api/v4/projects/22567556/packages/generic/hcs-benchmark")
+    # only works inside a GitLab CI/CD runner
+    set(GITLAB_PACKAGE_GROUP_NAME "hcs-benchmark")
     set(PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}.deb")
     set(PACKAGE_FILE "${CMAKE_BINARY_DIR}/${PACKAGE_FILE_NAME}")
     include(gitlab-package-push)
@@ -221,7 +222,8 @@ if ("${CPACK_GENERATOR}" STREQUAL "RPM")
     set(PACKAGE_RPM_CONTROL_DIR "tools/package/rpm")
     include(cmake/rpm-package.cmake)
 
-    set(GITLAB_PACKAGE_URL "https://gitlab.com/api/v4/projects/22567556/packages/generic/hcs-benchmark")
+    # only works inside a GitLab CI/CD runner
+    set(GITLAB_PACKAGE_GROUP_NAME "hcs-benchmark")
     set(PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}.rpm")
     set(PACKAGE_FILE "${CMAKE_BINARY_DIR}/${PACKAGE_FILE_NAME}")
     include(gitlab-package-push)
