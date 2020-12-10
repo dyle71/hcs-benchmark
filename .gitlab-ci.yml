@@ -41,7 +41,7 @@ package-debian-buster:
     - rm -rf build &> /dev/null
     - mkdir -p build
     - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=debian-buster ..
+    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=debian-buster -DCI_JOB_TOKEN=$CI_JOB_TOKEN ..
     - make
     - make package
     - make gitlab_push_package
@@ -59,7 +59,7 @@ package-ubuntu-bionic:
     - rm -rf build &> /dev/null
     - mkdir -p build
     - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=ubuntu-bionic ..
+    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=ubuntu-bionic -DCI_JOB_TOKEN=$CI_JOB_TOKEN ..
     - make
     - make package
     - make gitlab_push_package
@@ -77,7 +77,7 @@ package-ubuntu-focal:
     - rm -rf build &> /dev/null
     - mkdir -p build
     - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=ubuntu-focal ..
+    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=ubuntu-focal -DCI_JOB_TOKEN=$CI_JOB_TOKEN ..
     - make
     - make package
     - make gitlab_push_package
@@ -95,7 +95,7 @@ package-fedora32:
     - rm -rf build &> /dev/null
     - mkdir -p build
     - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=RPM -DCPACK_SYSTEM_NAME=fedora32 ..
+    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=RPM -DCPACK_SYSTEM_NAME=fedora32 -DCI_JOB_TOKEN=$CI_JOB_TOKEN ..
     - make
     - make package
     - make gitlab_push_package
