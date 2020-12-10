@@ -41,7 +41,7 @@ package-debian-buster:
     - rm -rf build &> /dev/null
     - mkdir -p build
     - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=debian_buster ..
+    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=debian-buster ..
     - make
     - make package
   artifacts:
@@ -58,7 +58,7 @@ package-ubuntu-bionic:
     - rm -rf build &> /dev/null
     - mkdir -p build
     - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=ubuntu_bionic ..
+    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=ubuntu-bionic ..
     - make
     - make package
   artifacts:
@@ -75,7 +75,7 @@ package-ubuntu-focal:
     - rm -rf build &> /dev/null
     - mkdir -p build
     - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=ubuntu_focal ..
+    - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=ubuntu-focal ..
     - make
     - make package
   artifacts:
