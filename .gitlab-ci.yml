@@ -44,8 +44,6 @@ package-debian-buster:
     - cmake -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=DEB -DCPACK_SYSTEM_NAME=debian-buster ..
     - make
     - make package
-    - 'echo "CI_API_V4_URL: ${CI_API_V4_URL}"'
-    - 'echo "CI_PROJECT_ID: ${CI_PROJECT_ID}"'
     - make gitlab_push_package
   artifacts:
     paths:
