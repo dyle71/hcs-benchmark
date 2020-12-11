@@ -26,7 +26,7 @@ int main(int argc, char ** argv) {
     auto time_start = std::chrono::high_resolution_clock::now();
 
     // do some heave time consuming work
-    int bytes_produced = heavy_computing();
+    unsigned int bytes_produced = heavy_computing();
     Throughput throughput{GetElapsedMicroSeconds(time_start), bytes_produced};
     
     // tell the user
