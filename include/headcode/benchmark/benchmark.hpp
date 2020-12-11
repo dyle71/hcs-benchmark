@@ -17,13 +17,13 @@
  */
 namespace headcode::benchmark {
 
-    
+
 /**
  * @brief Throughput data.
  */
 struct Throughput {
-    std::chrono::microseconds elapsed_;    /**< @brief Number of microseconds elapsed. */
-    std::uint64_t bytes_;                  /**< @brief Number of bytes processed. */
+    std::chrono::microseconds elapsed_;        //<! @brief Number of microseconds elapsed.
+    std::uint64_t bytes_;                      //<! @brief Number of bytes processed.
 };
 
 /**

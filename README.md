@@ -6,16 +6,41 @@ This a very tiny itzi-bitzi header-only C++17 project to enhance working benchma
 * make a stop
 * count bps
 
+This little tool should be non-intrusive to existing code and relies on the `high_precision_clock` of modern C++.
+
+It centers around the idea of a `Throughput` struct holding an amount (actually "bytes processed") combined
+with a duration (in microseconds) plus accompanying convenience functions.
+
 
 ## Usage example
 
-****TBD****
+```c++
+#include <chrono>
+#include <iostream>
+#include <headcode/benchmark/benchmark.hpp>
 
+using headcode::benchmark;
+
+int main(int argc, char ** argv) {
+
+    auto time_start = std::chrono::high_resolution_clock::now();
+
+    // do some heave time consuming work
+    int bytes_produced = heavy_computing();
+    Throughput throughput{GetElapsedMicroSeconds(time_start), bytes_produced};
+    
+    // tell the user
+    std::cout << GetMegaBitsPerSecond() << " Mbps" << std::endl;
+
+    return 0;
+}
+```
+
+Done.
 
 **NOTE** I'm using the Googletest Suite for my test. Therefore I strongly recommend 
 examining the source code in the test, since they are also meant for documentation 
 and show how this code is intended to be used. Look for instance at this:
-
 
 
 ## Project layout
