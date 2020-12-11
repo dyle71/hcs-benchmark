@@ -30,7 +30,7 @@ int main(int argc, char ** argv) {
     Throughput throughput{GetElapsedMicroSeconds(time_start), bytes_produced};
     
     // tell the user
-    std::cout << GetMegaBitsPerSecond() << " Mbps" << std::endl;
+    std::cout << GetMegaBitsPerSecond(throughput) << " Mbps" << std::endl;
 
     return 0;
 }
