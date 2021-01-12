@@ -18,8 +18,8 @@ TEST(Version, regular) {
 }
 
 
-TEST(Version, V0_0_1) {
-    std::uint32_t version = MAKE_VERSION(0, 0, 1);
-    EXPECT_EQ(static_cast<unsigned int>((0) << 24 | (0) << 16 | (1)), version);
-    EXPECT_EQ(GetHCSBenchmarkVersion_0_0_1(), version);
+TEST(Version, V0_1_0) {
+    std::uint32_t version = MAKE_VERSION(0, 1, 0);
+    EXPECT_EQ(static_cast<unsigned int>((0) << 24 | (1) << 16 | (0)), version);
+    EXPECT_EQ(GetHCSBenchmarkVersion_0_1_0(), version);
 }

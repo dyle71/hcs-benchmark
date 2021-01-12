@@ -19,11 +19,11 @@
 
 
 /**
- * @brief   Version check for 0.0.1
+ * @brief   Version check for 0.1.0
  * @return  A value, representing the version.
  */
-inline std::uint32_t GetHCSBenchmarkVersion_0_0_1() {
-    return MAKE_VERSION(0, 0, 1);
+inline std::uint32_t GetHCSBenchmarkVersion_0_1_0() {
+    return MAKE_VERSION(0, 1, 0);
 }
 
 /**
@@ -36,7 +36,7 @@ namespace headcode::benchmark {
  * @return  A value, representing the current version.
  */
 inline std::uint32_t GetCurrentVersion() {
-    return GetHCSBenchmarkVersion_0_0_1();
+    return GetHCSBenchmarkVersion_0_1_0();
 }
 
 /**
@@ -44,7 +44,7 @@ inline std::uint32_t GetCurrentVersion() {
  * @return  a string holding the current version.
  */
 inline std::string GetVersionString() {
-    return "0.0.1";
+    return "0.1.0";
 }
 
 }
