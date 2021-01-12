@@ -9,3 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Using https://gitlab.com/headcode.space/cmake as source of additional cmake scripts.
 
 [Unreleased]: https://gitlab.com/headcode.space/benchmark/-/tree/develop
+
+---
+
+Copyright (C) 2020-2021 headcode.space e.U.  
+Oliver Maurhart <info@headcode.space>  
+[https://headcode.space](https://www.headcode.space)  
