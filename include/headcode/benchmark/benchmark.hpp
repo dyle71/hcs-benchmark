@@ -1,4 +1,6 @@
 /*
+ * @file    benchmark.hpp
+ *
  * This file is part of the headcode.space benchmark.
  *
  * The 'LICENSE.txt' file in the project root holds the software license.
