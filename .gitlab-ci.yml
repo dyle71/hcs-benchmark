@@ -21,7 +21,7 @@ build:
     - cd build
     - cmake -DBUILD_TESTING=On -DCMAKE_BUILD_TYPE=Debug -DPROFILING_MODE_ENABLED:Bool=On ..
     - make
-    - ctest -VV -F --timeout 10.0
+    - ctest -VV -F --timeout 30.0
     - make run-gcovr
     - make package_source
     - cd ${CI_PROJECT_DIR}
