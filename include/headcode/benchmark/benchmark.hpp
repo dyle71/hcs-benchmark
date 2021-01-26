@@ -4,7 +4,7 @@
  * This file is part of the headcode.space benchmark.
  *
  * The 'LICENSE.txt' file in the project root holds the software license.
- * Copyright (C) 2020-2021 headcode.space e.U.  
+ * Copyright (C) 2020-2021 headcode.space e.U.
  * Oliver Maurhart <info@headcode.space>, https://www.headcode.space
  */
 
@@ -24,8 +24,8 @@ namespace headcode::benchmark {
  * @brief Throughput data.
  */
 struct Throughput {
-    std::chrono::microseconds elapsed_;        //!< @brief Number of microseconds elapsed.
-    std::uint64_t bytes_;                      //!< @brief Number of bytes processed.
+    std::chrono::microseconds elapsed_{0};        //!< @brief Number of microseconds elapsed.
+    std::uint64_t bytes_ = 0;                     //!< @brief Number of bytes processed.
 };
 
 /**
@@ -33,7 +33,7 @@ struct Throughput {
  * @param   since       the reference point in time
  * @return  microseconds passed since the reference point
  */
-inline std::chrono::microseconds GetElapsedMicroSeconds(std::chrono::high_resolution_clock::time_point const & since) {
+inline std::chrono::microseconds GetElapsedMicroSeconds(std::chrono::high_resolution_clock::time_point since) {
     return std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - since);
 }
 

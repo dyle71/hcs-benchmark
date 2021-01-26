@@ -46,7 +46,7 @@ inline std::uint32_t GetCurrentVersion() {
  * @return  a string holding the current version.
  */
 inline std::string GetVersionString() {
-    return "0.1.0";
+    return std::string{"0.1.0"};
 }
 
 }

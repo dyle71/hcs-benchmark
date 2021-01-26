@@ -74,9 +74,11 @@ if (PROFILING_MODE_ENABLED)
     set(COVERAGE_EXCLUDE_DIRS "'/usr/include/*' '/usr/lib/*' '${CMAKE_SOURCE_DIR}/3rd/*'")
     set(COVERAGE_INFO_FILE ${CMAKE_BINARY_DIR}/gcovr-coverage.info)
     set(COVERAGE_REPORT_FILE ${CMAKE_BINARY_DIR}/gcovr-report.xml)
+    set(COVERAGE_SONARQUBE_REPORT_FILE ${CMAKE_BINARY_DIR}/gcovr-sonarqube-report.xml)
 
     add_custom_target(run-gcovr
         COMMAND gcovr -r ${CMAKE_SOURCE_DIR} -e ${CMAKE_SOURCE_DIR}/3rd -e ${CMAKE_SOURCE_DIR}/test -x -o ${COVERAGE_REPORT_FILE}
+        COMMAND gcovr -r ${CMAKE_SOURCE_DIR} -e ${CMAKE_SOURCE_DIR}/3rd -e ${CMAKE_SOURCE_DIR}/test -x --sonarqube ${COVERAGE_SONARQUBE_REPORT_FILE}
         COMMAND gcovr -r ${CMAKE_SOURCE_DIR} -e ${CMAKE_SOURCE_DIR}/3rd -e ${CMAKE_SOURCE_DIR}/test
         COMMAND lcov -c --directory ${CMAKE_BINARY_DIR} --output-file ${COVERAGE_INFO_FILE}
         COMMAND lcov --remove ${COVERAGE_INFO_FILE} '/usr/include/*' --output-file ${COVERAGE_INFO_FILE} -q
