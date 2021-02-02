@@ -10,25 +10,22 @@
 # ------------------------------------------------------------
 # tl;dr - How to create a package - copy-paste to a shell:
 #
-# 1. git clone https://gitlab.com/headcode.space/benchmark.git
+# 1. git clone --recurse-submodules https://gitlab.com/headcode.space/benchmark.git
 # 2. cd benchmark
 # 3. mkdir build
-# 4.1) cmake -D CMAKE_BUILD_TYPE=Release -D CPACK_GENERATOR=DEB ..        # for DEB packages
+# 4. cd buld
+# 5.1) cmake -D CMAKE_BUILD_TYPE=Release -D CPACK_GENERATOR=DEB ..        # for DEB packages
 # - xor -
-# 4.2) cmake -D CMAKE_BUILD_TYPE=Release -D CPACK_GENERATOR=RPM ..        # for RPM packages
-# 5. CORES=`grep 'cpu cores' /proc/cpuinfo | awk '{ print $4 }' | head -n 1` make -j $CORES
-# 6. make package
+# 5.2) cmake -D CMAKE_BUILD_TYPE=Release -D CPACK_GENERATOR=RPM ..        # for RPM packages
+# 6. CORES=`grep 'cpu cores' /proc/cpuinfo | awk '{ print $4 }' | head -n 1` make -j $CORES
+# 7. make package
 # ------------------------------------------------------------
 
 
 project(hcs-benchmark C CXX)
-cmake_minimum_required(VERSION 3.10.2)
+cmake_minimum_required(VERSION 3.13.4)
 
-cmake_policy(SET CMP0057 NEW)
-if (${CMAKE_VERSION} VERSION_EQUAL "3.12.0" OR ${CMAKE_VERSION} VERSION_GREATER "3.12.0")
-    cmake_policy(SET CMP0075 NEW)
-endif (${CMAKE_VERSION} VERSION_EQUAL "3.12.0" OR ${CMAKE_VERSION} VERSION_GREATER "3.12.0")
-
+cmake_policy(SET CMP0075 NEW)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${HCS_CMAKE}")
 
 if (CMAKE_BUILD_TYPE STREQUAL "")
@@ -103,11 +100,6 @@ add_definitions(-DVERSION_PATCH=${VERSION_PATCH})
 add_definitions(-DVERSION=\"${VERSION}\")
 add_definitions(-D_GNU_SOURCE)
 add_definitions(-D_DEFAULT_SOURCE)
-
-# define __FILENAME__ as macro like __FILE__ but relativ to CMAKE_SOURCE_DIR
-# note: $(subst ....) and $(abspath ....) are GNU Make commands (!) passed on 1:1 by CMake
-set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -D__FILENAME__='\"$(subst ${CMAKE_SOURCE_DIR}/,,$(abspath $<))\"'")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D__FILENAME__='\"$(subst ${CMAKE_SOURCE_DIR}/,,$(abspath $<))\"'")
 
 
 # ---- fix C++ standard used ----
