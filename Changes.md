@@ -6,12 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2021-02-04
+### Added
+- Switched to v1.0.0. - Release.
+
+
 ## [0.1.0] - 2021-01-12
 ### Added
 - Using https://gitlab.com/headcode.space/cmake as source of additional cmake scripts.
 
 
 [Unreleased]: https://gitlab.com/headcode.space/benchmark/-/tree/develop
+[1.0.0]: https://gitlab.com/headcode.space/benchmark/-/releases/v1.0.0
 [0.1.0]: https://gitlab.com/headcode.space/benchmark/-/releases/v0.1.0
 
 ---
