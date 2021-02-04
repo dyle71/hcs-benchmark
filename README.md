@@ -38,10 +38,6 @@ int main(int argc, char ** argv) {
 
 Done.
 
-**NOTE** I'm using the Googletest Suite for my test. Therefore I strongly recommend 
-examining the source code in the test, since they are also meant for documentation 
-and show how this code is intended to be used. Look for instance at this:
-
 
 ## Philosophy
 
@@ -150,7 +146,7 @@ $ cd build
 $ make test
 ```
 
-_Note: Please check the test files for documentation. 
+_Note: Please check the [test files](test/unit/) for documentation. 
 The tests are easy to read and tell you how the code is intended to be used._ 
 
 ### Test Coverage
