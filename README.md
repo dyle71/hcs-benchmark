@@ -1,4 +1,4 @@
-# benchmark
+# hcs-benchmark
 
 This a very tiny itzi-bitzi header-only C++17 project to enhance working benchmark:
 
