@@ -66,7 +66,28 @@ If you have any suggestions please drop in an email at https://gitlab.com/headco
 
 ## API
 
-**TBD**
+Since this thing here is so small, there isn't really much to say, is it?
+
+The prime structure is
+```c++
+struct Throughput {
+   std::chrono::microseconds elapsed_{0};
+   std::uint64_t bytes_ = 0;
+};
+```
+which holds a couple of bytes for a duration of microseconds.
+
+Then `GetElapsedMicroSeconds(std::chrono::high_resolution_clock::time_point since)` returns the number
+of microseconds between `since` and the function call.
+
+With this in mind, one can get
+* `GetBitsPerSecond(Throughput tp)`: bps
+* `GetKiloBitsPerSecond(Throughput tp)`:  kbps
+* `GetMegaBitsPerSecond(Throughput tp)`: Mbps
+* `GetGigaBitsPerSecond(Throughput tp)`: Gbps
+
+(All these based on the ISO SI basis of **1000**. Not IEC kibi, mebi, and gibi with a base of 1024).
+
 
 After an installation you'll find a doxygen documentation in your usual `doc` folder, which provides more
 details.

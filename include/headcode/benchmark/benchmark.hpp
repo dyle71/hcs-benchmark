@@ -42,7 +42,7 @@ inline std::chrono::microseconds GetElapsedMicroSeconds(std::chrono::high_resolu
  * @param   throughput          the throughput data
  * @return  bps
  */
-inline double GetBitsPerSecond(Throughput const & throughput) {
+inline double GetBitsPerSecond(Throughput throughput) {
     double elapsed_us = throughput.elapsed_.count();
     if (elapsed_us != 0) {
         return static_cast<double>(throughput.bytes_ << 3) / (elapsed_us / 1'000'000.0);
@@ -55,7 +55,7 @@ inline double GetBitsPerSecond(Throughput const & throughput) {
  * @param   throughput          the throughput data
  * @return  kbps
  */
-inline double GetKiloBitsPerSecond(Throughput const & throughput) {
+inline double GetKiloBitsPerSecond(Throughput throughput) {
     return GetBitsPerSecond(throughput) / 1'000.0;
 }
 
@@ -64,7 +64,7 @@ inline double GetKiloBitsPerSecond(Throughput const & throughput) {
  * @param   throughput          the throughput data
  * @return  Mbps
  */
-inline double GetMegaBitsPerSecond(Throughput const & throughput) {
+inline double GetMegaBitsPerSecond(Throughput throughput) {
     return GetBitsPerSecond(throughput) / 1'000'000.0;
 }
 
@@ -73,7 +73,7 @@ inline double GetMegaBitsPerSecond(Throughput const & throughput) {
  * @param   throughput          the throughput data
  * @return  Gbps
  */
-inline double GetGigaBitsPerSecond(Throughput const & throughput) {
+inline double GetGigaBitsPerSecond(Throughput throughput) {
     return GetBitsPerSecond(throughput) / 1'000'000'000.0;
 }
 
@@ -83,7 +83,7 @@ inline double GetGigaBitsPerSecond(Throughput const & throughput) {
  * @param   indent          the indent in each line
  * @return  A multi-line string holding the numbers.
  */
-inline std::string StreamPerformanceIndicators(Throughput const & throughput, std::string const & indent = {}) {
+inline std::string StreamPerformanceIndicators(Throughput throughput, std::string const & indent = {}) {
     std::stringstream ss;
     ss << indent << throughput.elapsed_.count() << " us" << std::endl;
     ss << indent << std::fixed << std::setprecision(3) << GetBitsPerSecond(throughput) << " bps" << std::endl;
