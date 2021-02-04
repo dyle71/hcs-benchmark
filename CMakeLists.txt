@@ -117,6 +117,10 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
     message(STATUS "Turning on compiler command export for CLang: ${CMAKE_BINARY_DIR}/compile_commands.json")
 endif ()
 
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_definitions("DEBUG")
+endif ()
+
 
 # ---- callgrind integration ----
 
@@ -164,6 +168,7 @@ install(DIRECTORY ${CMAKE_BINARY_DIR}/html
 # ------------------------------------------------------------ 
 # Workload
 
+option(BUILD_TESTING "enable testing" off)
 if (BUILD_TESTING)
     message(STATUS "Building tests")
     add_subdirectory(test)
