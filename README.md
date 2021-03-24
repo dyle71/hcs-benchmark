@@ -1,4 +1,4 @@
-# benchmark
+# hcs-benchmark
 
 This a very tiny itzi-bitzi header-only C++17 project to enhance working benchmark:
 
@@ -62,6 +62,8 @@ All `headcode.space` software follows these directives:
 
 I'm by no means perfect. There's always room for improvements and there are sure still bugs.
 If you have any suggestions please drop in an email at https://gitlab.com/headcode.space/benchmark/-/issues.
+
+SonarQube instance for hcs-benchmark: https://sonar.ddns.headcode.space/dashboard?id=hcs-benchmark.
 
 
 ## API
@@ -130,6 +132,8 @@ I provide binary installation packages for some operating systems
 - make
 - doxygen (with graphviz)
 - [googletest](https://github.com/google/googletest) (as submodule)
+- optional: ninja-build (as an alternative to make)
+- optional: conan (Conan package manger)
 
 When cloning this project execute the following to clone submodules as well:
 
@@ -153,6 +157,13 @@ $ mkdir build && cd build
 $ cmake ..
 $ make
 ```
+or with `ninja` installed:
+```bash
+$ mkdir build && cd build
+$ cmake -GNinja ..
+$ ninja
+```
+
 
 ## Test
 
@@ -161,10 +172,15 @@ After compilation run ctest
 $ cd build
 $ ctest
 ```
-Or
+or
 ```bash
 $ cd build
 $ make test
+```
+or with `ninja` installed:
+```bash
+$ cd build
+$ ninja test
 ```
 
 _Note: Please check the [test files](test/unit/) for documentation. 
@@ -182,6 +198,11 @@ Then compile as usual and run the tests. After the tests make the `run-gcovr` ta
 ```bash
 $ make test
 $ make run-gcovr
+```
+or with `ninja` installed:
+```bash
+$ ninja test
+$ ninja run-gcovr
 ```
 
 This will give you the test coverage on stdout as well as:
@@ -207,6 +228,7 @@ $ make
 ...
 $ make package
 ```
+(or use `ninja` in place of `make` if you use the Ninja generator)
 
 To create an installable `RPM`:
 ```bash
@@ -217,6 +239,15 @@ $ make
 ...
 $ make package
 ```
+(or use `ninja` in place of `make` if you use the Ninja generator)
+
+### Conan
+
+We support Conan package manger too. You may call
+```bash
+$ conan create tools/conan/
+```
+To create and locally install the conan package.
 
 
 ## Notable guidelines
