@@ -86,10 +86,10 @@ inline double GetGigaBitsPerSecond(Throughput throughput) {
 inline std::string StreamPerformanceIndicators(Throughput throughput, std::string const & indent = {}) {
     std::stringstream ss;
     ss << indent << throughput.elapsed_.count() << " us" << std::endl;
-    ss << indent << std::fixed << std::setprecision(3) << GetBitsPerSecond(throughput) << " bps" << std::endl;
-    ss << indent << std::fixed << std::setprecision(3) << GetKiloBitsPerSecond(throughput) << " kbps" << std::endl;
-    ss << indent << std::fixed << std::setprecision(3) << GetMegaBitsPerSecond(throughput) << " Mbps" << std::endl;
-    ss << indent << std::fixed << std::setprecision(3) << GetGigaBitsPerSecond(throughput) << " Gbps" << std::endl;
+    ss << indent << std::fixed << std::setprecision(3) << GetBitsPerSecond(throughput) << " bps\n";
+    ss << indent << std::fixed << std::setprecision(3) << GetKiloBitsPerSecond(throughput) << " kbps\n";
+    ss << indent << std::fixed << std::setprecision(3) << GetMegaBitsPerSecond(throughput) << " Mbps\n";
+    ss << indent << std::fixed << std::setprecision(3) << GetGigaBitsPerSecond(throughput) << " Gbps\n";
     return ss.str();
 }
 
