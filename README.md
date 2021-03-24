@@ -130,6 +130,7 @@ I provide binary installation packages for some operating systems
 - gcc (with g++) or clang (witch clang++)
 - git
 - make
+- ninja-build (as an alternative to make)
 - doxygen (with graphviz)
 - [googletest](https://github.com/google/googletest) (as submodule)
 
@@ -155,6 +156,13 @@ $ mkdir build && cd build
 $ cmake ..
 $ make
 ```
+or with `ninja` installed:
+```bash
+$ mkdir build && cd build
+$ cmake -GNinja ..
+$ ninja
+```
+
 
 ## Test
 
@@ -163,10 +171,15 @@ After compilation run ctest
 $ cd build
 $ ctest
 ```
-Or
+or
 ```bash
 $ cd build
 $ make test
+```
+or with `ninja` installed:
+```bash
+$ cd build
+$ ninja test
 ```
 
 _Note: Please check the [test files](test/unit/) for documentation. 
@@ -184,6 +197,11 @@ Then compile as usual and run the tests. After the tests make the `run-gcovr` ta
 ```bash
 $ make test
 $ make run-gcovr
+```
+or with `ninja` installed:
+```bash
+$ ninja test
+$ ninja run-gcovr
 ```
 
 This will give you the test coverage on stdout as well as:
