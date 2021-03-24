@@ -130,9 +130,10 @@ I provide binary installation packages for some operating systems
 - gcc (with g++) or clang (witch clang++)
 - git
 - make
-- ninja-build (as an alternative to make)
 - doxygen (with graphviz)
 - [googletest](https://github.com/google/googletest) (as submodule)
+- optional: ninja-build (as an alternative to make)
+- optional: conan (Conan package manger)
 
 When cloning this project execute the following to clone submodules as well:
 
@@ -227,6 +228,7 @@ $ make
 ...
 $ make package
 ```
+(or use `ninja` in place of `make` if you use the Ninja generator)
 
 To create an installable `RPM`:
 ```bash
@@ -237,6 +239,15 @@ $ make
 ...
 $ make package
 ```
+(or use `ninja` in place of `make` if you use the Ninja generator)
+
+### Conan
+
+We support Conan package manger too. You may call
+```bash
+$ conan create tools/conan/
+```
+To create and locally install the conan package.
 
 
 ## Notable guidelines

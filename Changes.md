@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2]
+### Added
+Support for conan package manager.
+
+## [1.0.1]
+Lost
+
 ## [1.0.0] - 2021-02-04
 ### Added
 - Switched to v1.0.0. - Release.
