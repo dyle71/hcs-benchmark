@@ -28,7 +28,7 @@ namespace headcode::benchmark {
  */
 struct Throughput {
     std::chrono::microseconds elapsed_{0};        //!< @brief Number of microseconds elapsed.
-    std::uint64_t bytes_ = 0;                     //!< @brief Number of bytes processed.
+    std::uint64_t bytes_{0};                      //!< @brief Number of bytes processed.
 };
 
 /**
