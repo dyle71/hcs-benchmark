@@ -91,6 +91,5 @@ package-conan:
   stage: package
   image: registry.gitlab.com/headcode.space/benchmark:ubuntu-focal
   script:
-    - conan remote add gitlab https://gitlab.com/api/v4/packages/conan
     - conan create tools/conan/ headcode.space+benchmark/stable
     - CONAN_LOGIN_USERNAME=ci_user CONAN_PASSWORD=${CI_JOB_TOKEN} conan upload hcs-benchmark/1.0.2@headcode.space+benchmark/stable --all --remote=gitlab
