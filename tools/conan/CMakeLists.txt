@@ -7,7 +7,17 @@
 # ------------------------------------------------------------
 
 
+# ------------------------------------------------------------
+# Define these variables:
+#
+#   - CONAN_USER, CONAN_CHANNEL     The conan package manager user/channel
+#   - CONAN_REMOTE                  The conan remote to upload to
+
 configure_file(conanfile.py conanfile.py @ONLY)
 add_custom_target(conan
     COMMAND conan create . ${CONAN_USER}/${CONAN_CHANNEL}
     COMMENT "Creating and installing conan package locally...")
+
+add_custom_target(conan_upload
+    COMMAND conan upload ${CMAKE_PROJECT_NAME}/${VERSION}@${CONAN_USER}/${CONAN_CHANNEL} --all --remote=${CONAN_REMOTE}
+    COMMENT "Uploading conan package to remote...")

@@ -14,7 +14,7 @@ from conans import ConanFile, tools
 
 class HcsBenchmarkConan(ConanFile):
     """Conan package manager file. See https://conan.io"""
-    name = "hcs-benchmark"
+    name = "@CMAKE_PROJECT_NAME@"
     version = "@VERSION@"
     license = "MIT"
     author = "Oliver Maurhart (oliver.maurhart@headcode.space)"
@@ -26,13 +26,11 @@ class HcsBenchmarkConan(ConanFile):
     # No settings/options are necessary, this is header only
 
     def source(self):
-        local_source = "@CMAKE_SOURCE_DIR@"
-        self.run("git clone " + (local_source or "https://gitlab.com/headcode.space/benchmark.git"))
+        git_source = "@CMAKE_SOURCE_DIR@" or "https://gitlab.com/headcode.space/benchmark.git"
+        self.run(f"git clone {git_source} {self.name}")
 
     def package(self):
-        with open('foo', 'w') as f:
-            f.write('bar')
-        self.copy("*.hpp", src="benchmark/include", dst="include")
+        self.copy("*.hpp", src=f"{self.name}/include", dst="include")
 
     def package_id(self):
         self.info.header_only()

@@ -6,24 +6,12 @@
 # Oliver Maurhart <info@headcode.space>, https://www.headcode.space
 # ------------------------------------------------------------
 
-
-# ------------------------------------------------------------
-# tl;dr - How to create a package - copy-paste to a shell:
-#
-# 1. git clone --recurse-submodules https://gitlab.com/headcode.space/benchmark.git
-# 2. cd benchmark
-# 3. mkdir build
-# 4. cd buld
-# 5.1) cmake -D CMAKE_BUILD_TYPE=Release -D CPACK_GENERATOR=DEB ..        # for DEB packages
-# - xor -
-# 5.2) cmake -D CMAKE_BUILD_TYPE=Release -D CPACK_GENERATOR=RPM ..        # for RPM packages
-# 6. CORES=`grep 'cpu cores' /proc/cpuinfo | awk '{ print $4 }' | head -n 1` make -j $CORES
-# 7. make package
-# ------------------------------------------------------------
-
-
 project(hcs-benchmark C CXX)
 cmake_minimum_required(VERSION 3.13.4)
+
+include(${CMAKE_SOURCE_DIR}/conan/conanbuildinfo.cmake)
+conan_basic_setup()
+set(CMAKE_REQUIRED_INCLUDES ${CONAN_INCLUDE_DIRS})
 
 cmake_policy(SET CMP0075 NEW)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${HCS_CMAKE}")
