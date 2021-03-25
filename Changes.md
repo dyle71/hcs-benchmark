@@ -6,9 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2021-03-25
+### Changed
+- Aligns more with Google Coding Style
+
 ## [1.0.2] - 2021-03-25
 ### Added
-Support for conan package manager.
+- Support for conan package manager.
 
 ## [1.0.1]
 Lost
@@ -24,6 +28,8 @@ Lost
 
 
 [Unreleased]: https://gitlab.com/headcode.space/benchmark/-/tree/develop
+[1.1.0]: https://gitlab.com/headcode.space/benchmark/-/releases/v1.1.0
+[1.0.2]: https://gitlab.com/headcode.space/benchmark/-/releases/v1.0.2
 [1.0.0]: https://gitlab.com/headcode.space/benchmark/-/releases/v1.0.0
 [0.1.0]: https://gitlab.com/headcode.space/benchmark/-/releases/v0.1.0
 
