@@ -73,8 +73,8 @@ Since this thing here is so small, there isn't really much to say, is it?
 The prime structure is
 ```c++
 struct Throughput {
-   std::chrono::microseconds elapsed_{0};
-   std::uint64_t bytes_ = 0;
+   std::chrono::microseconds elapsed{0};
+   std::uint64_t bytes{0};
 };
 ```
 which holds a couple of bytes for a duration of microseconds.
