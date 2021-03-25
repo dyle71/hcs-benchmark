@@ -9,6 +9,7 @@ class HcsBenchmarkConan(ConanFile):
     license = "MIT"
     author = "Oliver Maurhart (oliver.maurhart@headcode.space)"
     url = "https://gitlab.com/headcode.space/benchmark"
+    homepage = "https://gitlab.com/headcode.space/benchmark"
     description = "This a very tiny itzi-bitzi header-only C++17 project to enhance working benchmark."
     topics = ("benchmark", "C++17")
     no_copy_source = True
