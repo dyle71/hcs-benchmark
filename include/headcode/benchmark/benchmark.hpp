@@ -12,6 +12,9 @@
 #define HEADCODE_SPACE_BENCHMARK_BENCHMARK_HPP
 
 #include <chrono>
+#include <iomanip>
+#include <sstream>
+#include <string>
 
 
 /**
@@ -24,8 +27,8 @@ namespace headcode::benchmark {
  * @brief Throughput data.
  */
 struct Throughput {
-    std::chrono::microseconds elapsed_{0};        //!< @brief Number of microseconds elapsed.
-    std::uint64_t bytes_ = 0;                     //!< @brief Number of bytes processed.
+    std::chrono::microseconds elapsed{0};        //!< @brief Number of microseconds elapsed.
+    std::uint64_t bytes{0};                      //!< @brief Number of bytes processed.
 };
 
 /**
@@ -43,9 +46,9 @@ inline std::chrono::microseconds GetElapsedMicroSeconds(std::chrono::high_resolu
  * @return  bps
  */
 inline double GetBitsPerSecond(Throughput throughput) {
-    double elapsed_us = throughput.elapsed_.count();
+    double elapsed_us = throughput.elapsed.count();
     if (elapsed_us != 0) {
-        return static_cast<double>(throughput.bytes_ << 3) / (elapsed_us / 1'000'000.0);
+        return static_cast<double>(throughput.bytes << 3) / (elapsed_us / 1'000'000.0);
     }
     return 0;
 }
@@ -85,7 +88,7 @@ inline double GetGigaBitsPerSecond(Throughput throughput) {
  */
 inline std::string StreamPerformanceIndicators(Throughput throughput, std::string const & indent = {}) {
     std::stringstream ss;
-    ss << indent << throughput.elapsed_.count() << " us" << std::endl;
+    ss << indent << throughput.elapsed.count() << " us\n";
     ss << indent << std::fixed << std::setprecision(3) << GetBitsPerSecond(throughput) << " bps\n";
     ss << indent << std::fixed << std::setprecision(3) << GetKiloBitsPerSecond(throughput) << " kbps\n";
     ss << indent << std::fixed << std::setprecision(3) << GetMegaBitsPerSecond(throughput) << " Mbps\n";

@@ -73,8 +73,8 @@ Since this thing here is so small, there isn't really much to say, is it?
 The prime structure is
 ```c++
 struct Throughput {
-   std::chrono::microseconds elapsed_{0};
-   std::uint64_t bytes_ = 0;
+   std::chrono::microseconds elapsed{0};
+   std::uint64_t bytes{0};
 };
 ```
 which holds a couple of bytes for a duration of microseconds.
@@ -107,6 +107,7 @@ details.
 ├── test                        Tests.
 │   └── unit                    Unit tests.
 ├── tools                       Various tools for run-time or build-time.
+│   ├── conan                   Conan package manager files.
 │   ├── docker                  Docker builder image definitions: Dockerfiles for various platforms to build.
 │   └── package                 Package related files.
 ├── Changes.md                  Changes file.
@@ -131,9 +132,9 @@ I provide binary installation packages for some operating systems
 - git
 - make
 - doxygen (with graphviz)
+- conan (Conan package manger)
 - [googletest](https://github.com/google/googletest) (as submodule)
 - optional: ninja-build (as an alternative to make)
-- optional: conan (Conan package manger)
 
 When cloning this project execute the following to clone submodules as well:
 
@@ -146,6 +147,19 @@ or simply clone with the `--recurse-submodule` option:
 ```bash
 $ git clone --recurse-submodules
 ```
+
+You may collect and install all dependencies on your own or use the conan system. For the latter
+add setup conan (initial one-time; skip this if you have prepared conan locally already):
+```bash
+$ conan profile new default --detect
+$ conan profile update settings.compiler.libcxx=libstdc++11 default
+$ conan remote add gitlab https://gitlab.com/api/v4/packages/conan
+```
+The pull in all missing dependencies via
+```bash
+$ ( mkdir -p conan && cd conan && conan install .. ) 
+```
+
 
 #### Native build
 
@@ -241,14 +255,21 @@ $ make package
 ```
 (or use `ninja` in place of `make` if you use the Ninja generator)
 
+
 ### Conan
 
-We support Conan package manger too. You may call
+To create and install conan packages, call
 ```bash
-$ conan create tools/conan/
+$ cd build
+$ ninja conan 
 ```
-To create and locally install the conan package.
-
+You may want to tweak the package labeling by setting `CONAN_USER` and `CONAN_CHANNEL` arguments 
+in cmake call prior like this:
+```bash
+$ cd build
+$ cmake -DCONAN_USER=${USER} -DCONAN_CHANNEL="testing" ..
+$ ninja conan 
+```
 
 ## Notable guidelines
 

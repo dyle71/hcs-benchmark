@@ -16,6 +16,10 @@ build:
   script:
     - git submodule init
     - git submodule update
+    - mkdir -p conan
+    - cd conan
+    - conan install ..
+    - cd ..
     - rm -rf build &> /dev/null
     - mkdir -p build
     - cd build
@@ -39,6 +43,10 @@ package-debian-buster:
   script:
     - git submodule init
     - git submodule update
+    - mkdir -p conan
+    - cd conan
+    - conan install ..
+    - cd ..
     - rm -rf build &> /dev/null
     - mkdir -p build
     - cd build
@@ -57,6 +65,10 @@ package-ubuntu-focal:
   script:
     - git submodule init
     - git submodule update
+    - mkdir -p conan
+    - cd conan
+    - conan install ..
+    - cd ..
     - rm -rf build &> /dev/null
     - mkdir -p build
     - cd build
@@ -75,6 +87,10 @@ package-fedora32:
   script:
     - git submodule init
     - git submodule update
+    - mkdir -p conan
+    - cd conan
+    - conan install ..
+    - cd ..
     - rm -rf build &> /dev/null
     - mkdir -p build
     - cd build
@@ -91,6 +107,15 @@ package-conan:
   stage: package
   image: registry.gitlab.com/headcode.space/benchmark:ubuntu-focal
   script:
-    - conan remote add gitlab https://gitlab.com/api/v4/packages/conan
-    - conan create tools/conan/ headcode.space+benchmark/stable
-    - CONAN_LOGIN_USERNAME=ci_user CONAN_PASSWORD=${CI_JOB_TOKEN} conan upload hcs-benchmark/1.0.2@headcode.space+benchmark/stable --all --remote=gitlab
+    - git submodule init
+    - git submodule update
+    - mkdir -p conan
+    - cd conan
+    - conan install ..
+    - cd ..
+    - rm -rf build &> /dev/null
+    - mkdir -p build
+    - cd build
+    - cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCONAN_USER=headcode.space+benchmark -DCONAN_CHANNEL=stable -DCONAN_REMOTE=gitlab ..
+    - ninja conan
+    - CONAN_LOGIN_USERNAME=ci_user CONAN_PASSWORD=${CI_JOB_TOKEN} ninja conan_upload
