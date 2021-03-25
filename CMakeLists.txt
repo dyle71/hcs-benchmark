@@ -142,6 +142,8 @@ else()
     message(STATUS "To enable tests invoke cmake with \"-D BUILD_TESTING=on\" arguments.")
 endif ()
 
+add_subdirectory(tools)
+
 
 # ------------------------------------------------------------
 # Installing stuff
