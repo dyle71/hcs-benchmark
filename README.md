@@ -255,15 +255,21 @@ $ make package
 ```
 (or use `ninja` in place of `make` if you use the Ninja generator)
 
+
 ### Conan
 
-I support Conan package manger too. You may call
+To create and install conan packages, call
 ```bash
 $ cd build
 $ ninja conan 
 ```
-To create and locally install the conan package.
-
+You may want to tweak the package labeling by setting `CONAN_USER` and `CONAN_CHANNEL` arguments 
+in cmake call prior like this:
+```bash
+$ cd build
+$ cmake -DCONAN_USER=${USER} -DCONAN_CHANNEL="testing" ..
+$ ninja conan 
+```
 
 ## Notable guidelines
 
