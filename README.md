@@ -132,9 +132,9 @@ I provide binary installation packages for some operating systems
 - git
 - make
 - doxygen (with graphviz)
+- conan (Conan package manger)
 - [googletest](https://github.com/google/googletest) (as submodule)
 - optional: ninja-build (as an alternative to make)
-- optional: conan (Conan package manger)
 
 When cloning this project execute the following to clone submodules as well:
 
@@ -147,6 +147,19 @@ or simply clone with the `--recurse-submodule` option:
 ```bash
 $ git clone --recurse-submodules
 ```
+
+You may collect and install all dependencies on your own or use the conan system. For the latter
+add setup conan (initial one-time; skip this if you have prepared conan locally already):
+```bash
+$ conan profile new default --detect
+$ conan profile update settings.compiler.libcxx=libstdc++11 default
+$ conan remote add gitlab https://gitlab.com/api/v4/packages/conan
+```
+The pull in all missing dependencies via
+```bash
+$ ( mkdir -p conan && cd conan && conan install .. ) 
+```
+
 
 #### Native build
 
