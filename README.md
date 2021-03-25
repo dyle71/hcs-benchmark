@@ -107,6 +107,7 @@ details.
 ├── test                        Tests.
 │   └── unit                    Unit tests.
 ├── tools                       Various tools for run-time or build-time.
+│   ├── conan                   Conan package manager files.
 │   ├── docker                  Docker builder image definitions: Dockerfiles for various platforms to build.
 │   └── package                 Package related files.
 ├── Changes.md                  Changes file.
@@ -243,9 +244,10 @@ $ make package
 
 ### Conan
 
-We support Conan package manger too. You may call
+I support Conan package manger too. You may call
 ```bash
-$ conan create tools/conan/
+$ cd build
+$ ninja conan 
 ```
 To create and locally install the conan package.
 
