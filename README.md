@@ -41,9 +41,11 @@ Done.
 
 ## Philosophy
 
-All `headcode.space` software follows these directives:
+All `headcode.space` software follows these directives in that order:
 
-1. Provide very **high quality** C++ software. That's the topmost goal.
+1. Provide very **high quality** C++ software: the software does what it is meant to do
+   and never ever crashes or reports false results. It has a minimum of 90% testing code 
+   coverage. That's the topmost goal.
 
 2. Provide appealing C++ software, i.e. software which is **easily read and understood**.
    Second goal.
@@ -59,6 +61,12 @@ All `headcode.space` software follows these directives:
    linked against these libraries have little to no runtime dependency and can be installed
    directly with a mere `copy` and b) they are smaller too, since the linkers tend to strip off
    stuff which is not needed.
+
+5. In reverse, using and `headcode.space` library or software should not impose and intrusive
+   dependencies on this particular software. It should be fairly easy to replace this software
+   with something else.
+
+6. Be performant. Yes, speed is impressive too.
 
 I'm by no means perfect. There's always room for improvements and there are sure still bugs.
 If you have any suggestions please drop in an email at https://gitlab.com/headcode.space/benchmark/-/issues.
@@ -100,11 +108,12 @@ details.
 ```
 .
 ├── 3rd                         3rd party libraries needed (likely as git submodules).
-├── cmake                       CMake additional files.
-├── include                     Public header files. Add the path to this folder to your C++ search path.
+├── cmake                       CMake additional files (git submodule).
+├── include                     Public header files. Add this folder to your C++ search path.
 │   └── headcode                
 │       └── benchmark           Here is the main include: <headcode/benchmark/benchmark.hpp>
 ├── test                        Tests.
+│   ├── shared                  Shared input data files for tests.
 │   └── unit                    Unit tests.
 ├── tools                       Various tools for run-time or build-time.
 │   ├── conan                   Conan package manager files.
@@ -112,6 +121,7 @@ details.
 │   └── package                 Package related files.
 ├── Changes.md                  Changes file.
 ├── CMakeLists.txt              The overall CMakeLists.txt.
+├── conanfile.txt               Conan package file.
 ├── Doxyfile                    Doxgen API documentation configuration.
 ├── LICENSE.txt                 The software license.
 └── README.md                   This file.
@@ -119,7 +129,7 @@ details.
 
 ## Installation
 
-I provide binary installation packages for some operating systems
+I provide binary installation packages for some operating systems and for conan 
 [here](https://gitlab.com/headcode.space/benchmark/-/packages).
 
 
@@ -132,7 +142,7 @@ I provide binary installation packages for some operating systems
 - git
 - make
 - doxygen (with graphviz)
-- conan (Conan package manger)
+- [conan](https://conan.io) (Conan package manger)
 - [googletest](https://github.com/google/googletest) (as submodule)
 - optional: ninja-build (as an alternative to make)
 
@@ -148,16 +158,18 @@ or simply clone with the `--recurse-submodule` option:
 $ git clone --recurse-submodules
 ```
 
-You may collect and install all dependencies on your own or use the conan system. For the latter
-add setup conan (initial one-time; skip this if you have prepared conan locally already):
+You may collect and install all dependencies on your own or use the [conan](https://conan.io) system. 
+For the latter setup conan (initial one-time; skip this if you have prepared conan locally already) 
+to bind to libstdc++11 ABI and add the official GitLab.com as remote:
 ```bash
 $ conan profile new default --detect
 $ conan profile update settings.compiler.libcxx=libstdc++11 default
 $ conan remote add gitlab https://gitlab.com/api/v4/packages/conan
 ```
-The pull in all missing dependencies via
+
+Then pull in all missing dependencies via
 ```bash
-$ ( mkdir -p conan && cd conan && conan install .. ) 
+$ ( mkdir -p conan &> /dev/null && cd conan && conan install .. ) 
 ```
 
 
@@ -228,7 +240,7 @@ This will give you the test coverage on stdout as well as:
 in the build folder.
 
 
-## Installable package creation
+## Installable system package creation
 
 This project supports the creation of `DEB` and `RPM` files. This is done by specifying
 the `CPACK_GENERATOR` while configuring the project. 
@@ -256,13 +268,14 @@ $ make package
 (or use `ninja` in place of `make` if you use the Ninja generator)
 
 
-### Conan
+## Conan packages
 
 To create and install conan packages locally, call
 ```bash
 $ cd build
 $ make conan 
 ```
+
 You may want to tweak the package labeling by setting `CONAN_USER` and `CONAN_CHANNEL` arguments 
 in cmake call prior like this:
 ```bash
@@ -270,6 +283,7 @@ $ cd build
 $ cmake -D CONAN_USER=${USER} -D CONAN_CHANNEL="testing" ..
 $ make conan 
 ```
+
 
 ## Notable guidelines
 
@@ -279,8 +293,10 @@ $ make conan
 * How to write a clever "Changes" file: https://keepachangelog.com/en/1.0.0/
 * Folder Convention: https://github.com/KriaSoft/Folder-Structure-Conventions
 
+
 ---
+
 
 Copyright (C) 2020-2021 headcode.space e.U.  
 Oliver Maurhart <info@headcode.space>  
-[https://headcode.space](https://www.headcode.space)  
+[https://headcode.space](https://www.headcode.space)
