@@ -8,4 +8,3 @@
 
 add_subdirectory(conan)
 add_subdirectory(docker)
-add_subdirectory(package)
