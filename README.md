@@ -108,7 +108,7 @@ details.
 │   └── unit                    Unit tests.
 ├── tools                       Various tools for run-time or build-time.
 │   ├── conan                   Conan package manager files.
-│   ├── docker                  Docker builder image definitions: Dockerfiles for various platforms to build.
+│   ├── docker                  Dockerfiles for various platforms to build.
 │   └── package                 Package related files.
 ├── Changes.md                  Changes file.
 ├── CMakeLists.txt              The overall CMakeLists.txt.
@@ -258,17 +258,17 @@ $ make package
 
 ### Conan
 
-To create and install conan packages, call
+To create and install conan packages locally, call
 ```bash
 $ cd build
-$ ninja conan 
+$ make conan 
 ```
 You may want to tweak the package labeling by setting `CONAN_USER` and `CONAN_CHANNEL` arguments 
 in cmake call prior like this:
 ```bash
 $ cd build
-$ cmake -DCONAN_USER=${USER} -DCONAN_CHANNEL="testing" ..
-$ ninja conan 
+$ cmake -D CONAN_USER=${USER} -D CONAN_CHANNEL="testing" ..
+$ make conan 
 ```
 
 ## Notable guidelines
