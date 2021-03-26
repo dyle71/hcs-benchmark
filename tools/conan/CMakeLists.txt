@@ -8,6 +8,8 @@
 
 
 # ------------------------------------------------------------
+# Creates the conan package.
+#
 # Define these variables:
 #
 #   - CONAN_USER, CONAN_CHANNEL     The conan package manager user/channel

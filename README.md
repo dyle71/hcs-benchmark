@@ -191,6 +191,45 @@ $ ninja
 ```
 
 
+#### Docker build images
+
+The `tools/docker` folder contains Dockerfiles along with necessary software
+to be installed into the docker containers to create docker builder containers.
+These docker containers should be capable to build the software.
+
+The build target `docker_images` will build these images, provided the docker
+command is found on the system and the `SHELL` environment variable points to some
+POSIX like shell (bash, sh, zsh, ...). The variable `DOCKER_TAG` will be used as 
+docker container tags.
+
+Example:
+```bash
+$ cd build
+$ cmake -GNinja -D DOCKER_TAG=foo_builder
+...
+$ ninja docker_images
+...
+$ docker images | grep hcs-benchmark
+REPOSITORY            TAG             IMAGE ID       CREATED         SIZE
+foo                   debian-buster   5db480e2bcd8   2 minutes ago   810MB
+foo                   fedora32        7f87de7b5e7b   2 minutes ago   1.48GB
+foo                   ubuntu-focal    64b74231cd90   2 minutes ago   885MB 
+```
+
+Then launch a docker builder like this:
+```bash
+$ docker run -it --rm --name foo-builder foo:debian-buster /bin/bash
+root@d192869e6fe6:/build#
+```
+
+In second terminal copy all sources into the container and run a "native" build
+there:
+```bash
+$ cd PROJECT-SOURCES
+$ docker cp . foo-builder:/build
+``` 
+
+
 ## Test
 
 After compilation run ctest
