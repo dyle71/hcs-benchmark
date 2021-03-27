@@ -6,9 +6,6 @@
 # Oliver Maurhart <info@headcode.space>, https://www.headcode.space
 # ------------------------------------------------------------
 
-import os
-import os.path
-
 from conans import ConanFile, tools
 
 
@@ -27,7 +24,7 @@ class HcsBenchmarkConan(ConanFile):
 
     def source(self):
         git_source = "@CMAKE_SOURCE_DIR@" or "https://gitlab.com/headcode.space/benchmark.git"
-        self.run(f"git clone {git_source} {self.name}")
+        self.run(f"git clone --recurse-submodules {git_source} {self.name}")
 
     def package(self):
         self.copy("*.hpp", src=f"{self.name}/include", dst="include")

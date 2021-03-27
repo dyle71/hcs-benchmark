@@ -29,6 +29,14 @@ inline std::uint32_t GetHCSBenchmarkVersion_1_1_0() {
 }
 
 /**
+ * @brief   Version check for 1.1.1
+ * @return  A value, representing the version.
+ */
+inline std::uint32_t GetHCSBenchmarkVersion_1_1_1() {
+    return MAKE_VERSION(1, 1, 1);
+}
+
+/**
  * @brief   The headcode benchmark namespace
  */
 namespace headcode::benchmark {
@@ -38,7 +46,7 @@ namespace headcode::benchmark {
  * @return  A value, representing the current version.
  */
 inline std::uint32_t GetCurrentVersion() {
-    return GetHCSBenchmarkVersion_1_1_0();
+    return GetHCSBenchmarkVersion_1_1_1();
 }
 
 /**
@@ -46,7 +54,7 @@ inline std::uint32_t GetCurrentVersion() {
  * @return  a string holding the current version.
  */
 inline std::string GetVersionString() {
-    return std::string{"1.1.0"};
+    return std::string{"1.1.1"};
 }
 
 }

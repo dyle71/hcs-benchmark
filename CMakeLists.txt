@@ -9,12 +9,9 @@
 project(hcs-benchmark C CXX)
 cmake_minimum_required(VERSION 3.13.4)
 
-include(${CMAKE_SOURCE_DIR}/conan/conanbuildinfo.cmake)
-conan_basic_setup()
-set(CMAKE_REQUIRED_INCLUDES ${CONAN_INCLUDE_DIRS})
-
 cmake_policy(SET CMP0075 NEW)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${HCS_CMAKE}")
+include(conan)
 
 if (CMAKE_BUILD_TYPE STREQUAL "")
     set(CMAKE_BUILD_TYPE "Debug")
@@ -29,7 +26,7 @@ ENABLE_TESTING()
 
 set(VERSION_MAJOR "1")
 set(VERSION_MINOR "1")
-set(VERSION_PATCH "0")
+set(VERSION_PATCH "1")
 set(VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 
 
