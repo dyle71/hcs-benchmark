@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2021-03-27
+### Removed
+- Drops need for top level conan folder
+
 ## [1.1.0] - 2021-03-25
 ### Changed
 - Aligns more with Google Coding Style
