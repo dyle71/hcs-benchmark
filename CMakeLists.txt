@@ -84,6 +84,7 @@ else ()
     message(STATUS "callgrind disabled")
 endif ()
 
+
 # ---- final compiler settings ----
 
 set(CMAKE_C_FLAGS_DEBUG "${COMPILER_WARNINGS} ${COMPILER_FLAGS_DEBUG} ${COMPILER_FLAGS_PROFILING}")

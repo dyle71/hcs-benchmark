@@ -6,15 +6,14 @@
 # Oliver Maurhart <info@headcode.space>, https://www.headcode.space
 # ------------------------------------------------------------
 
-include_directories(${CMAKE_SOURCE_DIR}/include ${TEST_BASE_DIR} ${GTEST_INCLUDE_DIR} ${CMAKE_BINARY_DIR})
-link_directories("${GTEST_LIBRARY_PATH};${GMOCK_LIBRARY_PATH}")
-set(CMAKE_REQUIRED_LIBRARIES "${CMAKE_REQUIRED_LIBRARIES}")
+include(GoogleTest)
 
+include_directories(${CMAKE_SOURCE_DIR}/include ${TEST_BASE_DIR} ${CMAKE_BINARY_DIR})
 set(UNIT_TEST_SRC
     test_benchmark.cpp
     test_version.cpp
 )
 
 add_executable(unit-tests ${UNIT_TEST_SRC})
-target_link_libraries(unit-tests gtest gtest_main gmock gmock_main ${CMAKE_REQUIRED_LIBRARIES})
+target_link_libraries(unit-tests ${CONAN_LIBS_GTEST} ${CMAKE_REQUIRED_LIBRARIES})
 gtest_add_tests(unit-tests "" AUTO)
