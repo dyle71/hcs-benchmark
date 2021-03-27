@@ -6,5 +6,8 @@
 # Oliver Maurhart <info@headcode.space>, https://www.headcode.space
 # ------------------------------------------------------------
 
+[build_requires]
+gtest/1.10.0
+
 [generators]
 cmake

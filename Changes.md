@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2] - 2021-03-27
+### Removed
+- Drops need for ggogletest as git submodule
+
 ## [1.1.1] - 2021-03-27
 ### Removed
 - Drops need for top level conan folder
@@ -32,12 +36,16 @@ Lost
 
 
 [Unreleased]: https://gitlab.com/headcode.space/benchmark/-/tree/develop
+[1.1.2]: https://gitlab.com/headcode.space/benchmark/-/releases/v1.1.2
+[1.1.1]: https://gitlab.com/headcode.space/benchmark/-/releases/v1.1.1
 [1.1.0]: https://gitlab.com/headcode.space/benchmark/-/releases/v1.1.0
 [1.0.2]: https://gitlab.com/headcode.space/benchmark/-/releases/v1.0.2
 [1.0.0]: https://gitlab.com/headcode.space/benchmark/-/releases/v1.0.0
 [0.1.0]: https://gitlab.com/headcode.space/benchmark/-/releases/v0.1.0
 
+
 ---
+
 
 Copyright (C) 2020-2021 headcode.space e.U.  
 Oliver Maurhart <info@headcode.space>  
