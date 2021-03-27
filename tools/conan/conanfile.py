@@ -6,9 +6,6 @@
 # Oliver Maurhart <info@headcode.space>, https://www.headcode.space
 # ------------------------------------------------------------
 
-import os
-import os.path
-
 from conans import ConanFile, tools
 
 
